@@ -1,0 +1,58 @@
+<h1><i>Crud Operation Using Model Driven Form</i></h1>
+<div class="container">
+    <h3><i>Create:</i></h3>
+    <form [formGroup]="student" novalidate>
+        {{crud2|json}}
+        <div class="form-group">
+            name:<input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group">
+            email:<input type="text" class="form-control" formControlName="email">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" (click)="PostHttpData2(student.value)">PostHttpData</button>
+            <button type="reset" class="btn btn-warning">reset</button>
+        </div>
+    </form>
+    <form [formGroup]="student2" novalidate>
+        <h3><i>Update:</i></h3>
+        {{crud3|json}}
+        <div class="form-group">
+            update name:<input type="text" class="form-control" formControlName="uname">
+        </div>
+        <div class="form-group">
+            update email:<input type="text" class="form-control" formControlName="uemail">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-secondary" (click)="PutHttpData2(student2.value)">PuthttpData</button>
+            <button type="reset" class="btn btn-warning">reset</button>
+        </div>
+    </form>
+    <hr>
+    <h3><i>Read:</i></h3>
+    <!-- {{crud.data|json}} -->
+    <div class="row">
+    <button type="submit" class="btn btn-success" (click)="GetHttpData2()">GetHttpData</button>
+    <input type="text" [(ngModel)]="search">
+    </div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>First_name</th>
+            <th>Last_name</th>
+            <th>Avatar</th>
+        </tr>
+        <tr *ngFor="let c of crud.data | filter:search">
+            <td>{{c.id}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.first_name}}</td>
+            <td>{{c.last_name}}</td>
+            <td><img src="{{c.avatar}}" width="30" height="30"></td>
+        </tr>
+    </table>
+    <hr>
+    <h3><i>Delete:</i></h3>
+    <button type="submit" class="btn btn-danger" (click)="DeleteHttpData2()">DeleteHttpData</button>
+    {{crud4|json}}
+</div>
